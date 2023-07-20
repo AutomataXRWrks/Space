@@ -19,6 +19,22 @@ function fetchRandomEarthDays() {
     });
 }
 
+
+function fetchAPO(){
+  url = 'https://api.nasa.gov/planetary/apod?api_key=RqGGlaKBgTnm9AdkXaLJ6pzgz5nHihUZTEw52fVV';
+  fetch(url, {
+})
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+    var img = document.createElement('img');
+    img.setAttribute("src", data.url);
+    document.body.appendChild(img);
+  });
+
+}
 // we use the rover input and generates the date options 
 function generateEarthDayOptions(rover) {
   var earthDaysSelect = document.getElementById("earthDay");
@@ -155,3 +171,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchNeoData();
   });
 });
+
+function init(){
+ fetchAPO()
+}
+
+init();
