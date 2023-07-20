@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rover & APOD API Example</title>
+  <script src="script.js"></script>
+</head>
+<body>
+  <h1>Rover & APOD API Example</h1>
+  <label for="rover">Rover:</label>
+  <select id="rover">
+    <option value="curiosity">Curiosity</option>
+    <option value="opportunity">Opportunity</option>
+    <option value="spirit">Spirit</option>
+  </select>
+  <br>
+  <button onclick="fetchRandomEarthDays()">Get Random Earth Days</button>
+  <br>
+  <label for="earthDay">Select an Earth Day:</label>
+  <select id="earthDay" disabled>
+    <option>Loading...</option>
+  </select>
+  <br>
+  <button id="search">Get Rover Data & Near Objects</button>
+  <br>
+  <div id="roverData"></div>
+  <h2>Near Earth Objects on Selected Earth Day</h2>
+  <div id="content"></div>
+</body>
+</html>
