@@ -29,9 +29,10 @@ function fetchAPO(){
   })
   .then(function (data) {
     console.log(data);
+    var div = document.getElementById("apodImage")
     var img = document.createElement('img');
     img.setAttribute("src", data.url);
-    document.body.appendChild(img);
+    div.appendChild(img);
   });
 
 }
