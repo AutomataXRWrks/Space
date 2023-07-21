@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rover & APOD API Example</title>
+  <title>Space NEO Tracker - A  new connection with space</title>
   <script src="script.js"></script>
 </head>
 <body>
+  <nav id="externalLinks">
+    <a href="https://mars.nasa.gov/mer/">Mars Exploration Rovers</a>
+    <a href="https://www.nasa.gov">NASA</a>
+  </nav>
   <h1>Rover & APOD API Example</h1>
   <label for="rover">Rover:</label>
   <select id="rover">
@@ -22,8 +26,30 @@
   <br>
   <button id="search">Get Rover Data & Near Objects</button>
   <br>
-  <div id="roverData"></div>
-  <h2>Near Earth Objects on Selected Earth Day</h2>
-  <div id="content"></div>
+  
+  <section> <!-- ROVER IMAGES SECTION -->
+    <div id="roverData">
+      <img id="expandedImg" style="width:50%">
+      <div id="imgtext"></div>
+    </div>
+  </section>
+
+  <section> <!-- CLOSEST OBJECTS SECTION -->
+    <h2>Near Earth Objects on Selected Earth Day</h2>
+    <div id="content"></div>
+  </section>
+
+  <section> <!-- APOD SECTION -->
+    <div id="apodImage"></div>
+  </section>
 </body>
+<footer>
+    <h3>Contact Us</h3>
+    <div id="suscribe">
+        <h2>Subscribe</h2>
+        <p>If you want to get the latest news about space and Mars subscribe to our newsletter.</p>
+        <input type="email" placeholder="Enter your email">      
+        <button id="btnSendEmail">Send</button>
+    </div>
+</footer>
 </html>
