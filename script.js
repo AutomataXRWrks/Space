@@ -173,6 +173,29 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// email localstorage
+
+ // Get the email input element and send button
+ const emailInput = document.getElementById('emailInput');
+ const btnSendEmail = document.getElementById('btnSendEmail');
+
+ // Check if email exists in local storage and display it if it does
+ if (localStorage.getItem('email')) {
+     emailInput.value = localStorage.getItem('email');
+ }
+
+ // Listen for button click event
+ btnSendEmail.addEventListener('click', function() {
+     // Get the email input value
+     const emailValue = emailInput.value;
+
+     // Save the email to local storage
+     localStorage.setItem('email', emailValue);
+
+     // Display a confirmation message
+     alert('Email saved to local storage: ' + emailValue);
+ });
+
 function init(){
  fetchAPO()
 }
