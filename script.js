@@ -6,7 +6,7 @@ var roverManifest = {};
 // for the dropdown menu with a list of 10 random days
 function fetchRandomEarthDays() {
   var rover = document.getElementById("rover").value;
-  var url = `https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=DEMO_KEY`;
+  var url = `https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=GGboVELwdTMQUM6rJcA5xx7EbK6SWxUTjOSiCvjX`;
 
   fetch(url)
     .then(response => response.json())
@@ -76,7 +76,7 @@ function getRandomEarthDays(rover) {
 function fetchRoverData() {
   var rover = document.getElementById("rover").value;
   var selectedEarthDay = document.getElementById("earthDay").value;
-  var url = `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?earth_date=${selectedEarthDay}&api_key=DEMO_KEY`;
+  var url = `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?earth_date=${selectedEarthDay}&api_key=GGboVELwdTMQUM6rJcA5xx7EbK6SWxUTjOSiCvjX`;
 
   fetch(url)
     .then(response => response.json())
@@ -113,7 +113,7 @@ function displayRoverData(data) {
 //this is the function for the api of the near earth objects 
 async function fetchNeoData() {
   let selectedEarthDay = document.getElementById("earthDay").value;
-  let API_KEY = "DEMO_KEY";
+  let API_KEY = "GGboVELwdTMQUM6rJcA5xx7EbK6SWxUTjOSiCvjX";
   let url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${selectedEarthDay}&end_date=${selectedEarthDay}&api_key=${API_KEY}`;
 
   try {
