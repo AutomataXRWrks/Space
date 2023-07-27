@@ -66,9 +66,11 @@ function fetchAPO() {
     .then(function (data) {
       //console.log(data);
       var div = document.getElementById("apodImage")
+      var section = document.getElementById("rightSection");
       var img = document.createElement('img');
       img.setAttribute("src", data.url);
-      div.appendChild(img);
+      //div.appendChild(img);
+      section.style.backgroundImage = "url('"+ data.url +"')";
     });
 
 }
@@ -170,7 +172,7 @@ function useApiData(data) {
 
   let dates = Object.keys(nearEarthObjects).slice(0, 5);
 
-  let htmlContent = "";
+  let htmlContent = `<h2 style="margin-bottom: 25px;">Near Earth Objects on `+ dates +`</h2>`;
 
   for (let date of dates) {
     let neoObjects = nearEarthObjects[date];
