@@ -35,7 +35,7 @@ function nearObjectsRandomDays() {
 }
 
 //function to fill near object select
-function generateNearObjectsDaysOptions(rover){
+function generateNearObjectsDaysOptions(rover) {
   var earthDaysSelect = document.getElementById("eartDayObjects");
   earthDaysSelect.innerHTML = "";
   var earthDays = getRandomEarthDays(rover);
@@ -52,7 +52,7 @@ function generateNearObjectsDaysOptions(rover){
 
 var btnSearchObjects = document.getElementById("searchObjects");
 
-btnSearchObjects.addEventListener("click",function(){
+btnSearchObjects.addEventListener("click", function () {
   fetchNeoData();
 })
 
@@ -70,7 +70,7 @@ function fetchAPO() {
       var img = document.createElement('img');
       img.setAttribute("src", data.url);
       //div.appendChild(img);
-      section.style.backgroundImage = "url('"+ data.url +"')";
+      section.style.backgroundImage = "url('" + data.url + "')";
     });
 
 }
@@ -168,9 +168,9 @@ async function fetchNeoData() {
   var nearObjectSection = document.getElementById("nearObjectSection");
   nearObjectSection.style.display = "block";
 
-   //hide rover images section
-   var roverSection = document.getElementById("roverSection");
-   roverSection.style.display = "none";
+  //hide rover images section
+  var roverSection = document.getElementById("roverSection");
+  roverSection.style.display = "none";
 
   let selectedEarthDay = document.getElementById("eartDayObjects").value;
   let API_KEY = "GGboVELwdTMQUM6rJcA5xx7EbK6SWxUTjOSiCvjX";
@@ -193,7 +193,7 @@ function useApiData(data) {
 
   let dates = Object.keys(nearEarthObjects).slice(0, 5);
 
-  let htmlContent = `<h2 style="margin-bottom: 25px;">Near Earth Objects on `+ dates +`</h2>`;
+  let htmlContent = `<h2 style="margin-bottom: 25px;">Near Earth Objects on ` + dates + `</h2>`;
 
   for (let date of dates) {
     let neoObjects = nearEarthObjects[date];
@@ -273,12 +273,12 @@ function selectTab(tabIndex) {
   document.getElementById(tabIndex).style.display = "block";
 }
 
-var swiper = new Swiper('.carousel',{
-  navigation:{
+var swiper = new Swiper('.carousel', {
+  navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
   },
-  pagination:{
+  pagination: {
     el: '.swiper-pagination',
   },
 })
