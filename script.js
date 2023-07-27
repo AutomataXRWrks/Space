@@ -1,4 +1,3 @@
-
 // here we store the photo manifest for the rover we select 
 var roverManifest = {};
 
@@ -19,23 +18,61 @@ function fetchRandomEarthDays() {
     });
 }
 
+//this function generates random day for near objects search
+function nearObjectsRandomDays() {
+  var rover = document.getElementById("rover").value;
+  var url = `https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=GGboVELwdTMQUM6rJcA5xx7EbK6SWxUTjOSiCvjX`;
 
-function fetchAPO(){
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      roverManifest[rover] = data.photo_manifest;
+      generateNearObjectsDaysOptions(rover);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
+
+//function to fill near object select
+function generateNearObjectsDaysOptions(rover){
+  var earthDaysSelect = document.getElementById("eartDayObjects");
+  earthDaysSelect.innerHTML = "";
+  var earthDays = getRandomEarthDays(rover);
+
+  for (var i = 0; i < earthDays.length; i++) {
+    var option = document.createElement("option");
+    option.value = earthDays[i];
+    option.textContent = earthDays[i];
+    earthDaysSelect.appendChild(option);
+  }
+
+  earthDaysSelect.disabled = false;
+}
+
+var btnSearchObjects = document.getElementById("searchObjects");
+
+btnSearchObjects.addEventListener("click",function(){
+  fetchNeoData();
+})
+
+function fetchAPO() {
   url = 'https://api.nasa.gov/planetary/apod?api_key=RqGGlaKBgTnm9AdkXaLJ6pzgz5nHihUZTEw52fVV';
   fetch(url, {
-})
-  .then(function (response) {
-    return response.json();
   })
-  .then(function (data) {
-    console.log(data);
-    var div = document.getElementById("apodImage")
-    var img = document.createElement('img');
-    img.setAttribute("src", data.url);
-    div.appendChild(img);
-  });
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      //console.log(data);
+      var div = document.getElementById("apodImage")
+      var img = document.createElement('img');
+      img.setAttribute("src", data.url);
+      div.appendChild(img);
+    });
 
 }
+
 // we use the rover input and generates the date options 
 function generateEarthDayOptions(rover) {
   var earthDaysSelect = document.getElementById("earthDay");
@@ -112,7 +149,7 @@ function displayRoverData(data) {
 
 //this is the function for the api of the near earth objects 
 async function fetchNeoData() {
-  let selectedEarthDay = document.getElementById("earthDay").value;
+  let selectedEarthDay = document.getElementById("eartDayObjects").value;
   let API_KEY = "GGboVELwdTMQUM6rJcA5xx7EbK6SWxUTjOSiCvjX";
   let url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${selectedEarthDay}&end_date=${selectedEarthDay}&api_key=${API_KEY}`;
 
@@ -147,7 +184,7 @@ function useApiData(data) {
       let diameterMax = neo.estimated_diameter.meters.estimated_diameter_max;
       let distance = neo.close_approach_data[0].miss_distance.kilometers;
 
-      htmlContent += `<div>
+      htmlContent += `<div style="margin-bottom: 20px">
                         <h3>Name: ${name}</h3>
                         <p>Is Dangerous: ${isDangerous}</p>
                         <p>Magnitude: ${magnitude}</p>
@@ -175,29 +212,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // email localstorage
 
- // Get the email input element and send button
- const emailInput = document.getElementById('emailInput');
- const btnSendEmail = document.getElementById('btnSendEmail');
+// Get the email input element and send button
+const emailInput = document.getElementById('emailInput');
+const btnSendEmail = document.getElementById('btnSendEmail');
 
- // Check if email exists in local storage and display it if it does
- if (localStorage.getItem('email')) {
-     emailInput.value = localStorage.getItem('email');
- }
+// Check if email exists in local storage and display it if it does
+if (localStorage.getItem('email')) {
+  emailInput.value = localStorage.getItem('email');
+}
 
- // Listen for button click event
- btnSendEmail.addEventListener('click', function() {
-     // Get the email input value
-     const emailValue = emailInput.value;
+// Listen for button click event
+btnSendEmail.addEventListener('click', function () {
+  // Get the email input value
+  const emailValue = emailInput.value;
 
-     // Save the email to local storage
-     localStorage.setItem('email', emailValue);
+  // Save the email to local storage
+  localStorage.setItem('email', emailValue);
 
-     // Display a confirmation message
-     alert('Email saved to local storage: ' + emailValue);
- });
+  // Display a confirmation message
+  alert('Email saved to local storage: ' + emailValue);
+});
 
-function init(){
- fetchAPO()
+function init() {
+  fetchAPO()
+}
+
+function selectTab(tabIndex) {
+  // Declare all variables
+  var i, tabcontent;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  //Show the Selected Tab
+  document.getElementById(tabIndex).style.display = "block";
 }
 
 init();

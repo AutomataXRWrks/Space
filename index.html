@@ -4,108 +4,170 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Space NEO Tracker - A  new connection with space</title>
+  <title>Space NEO Tracker - A new connection with space</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./main.css" />
-  <script src="script.js"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-      <section class="flex"> 
-<!--Left gray container A fake / hidden checkbox is used as click reciever,so we can use the :checked selector on it-->
+  <section class="flex">
+    <!--Left gray container A fake / hidden checkbox is used as click reciever,so we can use the :checked selector on it-->
 
-          <section class="box-border  h-screen w-1/3 p-4 border-2  bg-gray-200 relative ...">
-            <h1 class= "my-custom-class text-xl text-stone-600 ...">Rover & APOD API Example</h1>
-<!--Hamburguer menu-->
-            <nav role="navigation">
-            <div id="menuToggle" class="left-0 top-5">
-            <input type="checkbox" />
-            <span></span>
-            <span></span>
-            <span></span>
+    <section class="box-border  h-screen w-1/3 p-4 border-2  bg-gray-200 relative ...">
+      <h1 class="my-custom-class text-xl text-stone-600 ...">Space NEO Tracker</h1>
 
-        <ul id="menu" class="my-custom-class3">
-        <label for="rover">Rover:</label>
-  
-   
-        <select id="rover">
+      <!-- TAB MENU -->
+      <div class="tab">
+        <button class="tablinks" onclick="JavaScript:selectTab('tab1');">
+          Rovers Images
+        </button>
+        <div id="tab1" class="tabcontent">
+          <h3>Select a Rover</h3>
+          <select id="rover">
             <option value="curiosity">Curiosity</option>
             <option value="opportunity">Opportunity</option>
             <option value="spirit">Spirit</option>
-        </select>
-            <br>
+          </select>
           <button onclick="fetchRandomEarthDays()" class="bg-gradient-to-r from-gray-400 to-gray-50 
                                                     hover:from-gray-200 hover:to-gray-400 px-8 
+                                                    py-1 rounded-t-lg text-lg  ...">Get Random Earth Days
+          </button>
+          <select id="earthDay" disabled>
+            <option>Loading...</option>
+          </select>
+          <button id="search" class="bg-gradient-to-r from-gray-400 to-gray-50 
+                              hover:from-gray-200 hover:to-gray-400 px-2 
+                              py-1 rounded-t-lg text-lg  ...">Show Pictures
+          </button>
+        </div>
+        <button class="tablinks" onclick="JavaScript:selectTab('tab2');">
+          Near Objects
+        </button>
+        <div id="tab2" class="tabcontent">
+          <button onclick="nearObjectsRandomDays()"  class="bg-gradient-to-r from-gray-400 to-gray-50 
+          hover:from-gray-200 hover:to-gray-400 px-8 
+          py-1 rounded-t-lg text-lg  ...">Get Random Earth Days
+          </button>
+          <select id="eartDayObjects" disabled>
+            <option>Loading...</option>
+          </select>
+          <button id="searchObjects" class="bg-gradient-to-r from-gray-400 to-gray-50 
+                              hover:from-gray-200 hover:to-gray-400 px-2 
+                              py-1 rounded-t-lg text-lg  ...">Show Results
+          </button>
+        </div>
+      </div>
+
+      <!--Hamburguer menu-->
+      <!-- <nav role="navigation">
+        <div id="menuToggle" class="left-0 top-5">
+          <input type="checkbox" />
+          <span></span>
+          <span></span>
+          <span></span>
+          
+          <ul id="menu" class="my-custom-class3">
+            <label for="rover">Rover:</label>
+
+            <select id="rover">
+              <option value="curiosity">Curiosity</option>
+              <option value="opportunity">Opportunity</option>
+              <option value="spirit">Spirit</option>
+            </select>
+            <br>
+            <button onclick="fetchRandomEarthDays()" class="bg-gradient-to-r from-gray-400 to-gray-50 
+                                                    hover:from-gray-200 hover:to-gray-400 px-8 
                                                     py-1 rounded-t-lg text-lg  ...">Get Random Earth Days</button>
-           <br>
-      <label for="earthDay">Select an Earth Day:</label>
-      <select id="earthDay my-custom-class2" disabled>
-      <option>Loading...</option>
-      </select>
-      <br>
-      <button id="search"class="bg-gradient-to-r from-gray-400 to-gray-50 
+            <br>
+            <label for="earthDay">Select an Earth Day:</label>
+            <select id="earthDay my-custom-class2" disabled>
+              <option>Loading...</option>
+            </select>
+            <br>
+            <button id="search" class="bg-gradient-to-r from-gray-400 to-gray-50 
       hover:from-gray-200 hover:to-gray-400 px-2 
       py-1 rounded-t-lg text-lg  ...">Get Rover Data & Near Objects</button>
-    <br>
+            <br>
 
-  </ul>
-</div>
+            <div id="nearObjects">
+              <button onclick="nearObjectsRandomDays()" class="bg-gradient-to-r from-gray-400 to-gray-50 
+                                                    hover:from-gray-200 hover:to-gray-400 px-8 
+                                                    py-1 rounded-t-lg text-lg  ...">Get Random Earth Days
+              </button>
+              <div id="nearObjectDays" style="display: none;">
+                <label>Select an Earth Day:</label>
+                <select id="selectNearObjects" class="my-custom-class2">
+                  <option>Loading...</option>
+                </select>
+              </div>
+              <div id="nearObjectSearch" style="display: none;">
+                <button id="searchNearObjects" class="bg-gradient-to-r from-gray-400 to-gray-50 
+        hover:from-gray-200 hover:to-gray-400 px-2 
+        py-1 rounded-t-lg text-lg  ...">Get Info of Near Objects
+                </button>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </nav> -->
 
-  <div class="absolute bottom-3 left-3 ...">
-    <h3 class="my-custom-class2 border-b-2 border-fuchsia-600 w-3/6  ..." >Contact Us</h3>
-    <div id="suscribe">
-        <p class="my-custom-class3 mb-6 " >Get the latest news about space and Mars:</p>      
-        <input type="email" placeholder="Enter your email">      
-        <button id="btnSendEmail "class="ml-16  bg-gradient-to-r from-gray-400 to-gray-50 
-                                         hover:from-gray-200 hover:to-gray-400 px-8 
-                                         py-1 rounded-t-lg text-lg text-gray-700 ...">Send</button>
-    </div>
-  </div>
-  </section>
+    </section>
 
-<!-- Black Right container -->
+    <!-- Black Right container -->
     <section class="box-border  h-auto w-2/3 p-4 border-2  bg-black ...">
 
       <nav id="externalLinks" class="my-custom-class3 absolute top-3 right-3 ...">
         <a href="https://mars.nasa.gov/mer/" class="ml-16  bg-gradient-to-r from-gray-900 to-gray-950 
                                                     hover:from-gray-200 hover:to-gray-400 px-5 
                                                     py-1 rounded-t-lg text-lg text-gray-100 ...">
-                                                    Mars Exploration Rovers  </a>
+          Mars Exploration Rovers </a>
         <a href="https://www.nasa.gov" class="ml-16  bg-gradient-to-r from-gray-900 to-gray-950 
                                               hover:from-gray-200 hover:to-gray-400 px-5 
                                               py-1 rounded-t-lg text-lg text-gray-100 ...">NASA</a>
       </nav>
-  
-     <section> <!-- ROVER IMAGES SECTION -->
+
+      <section> <!-- ROVER IMAGES SECTION -->
         <div id="roverData">
           <img id="expandedImg" style="width:50%">
           <div id="imgtext"></div>
         </div>
-    </section>
+      </section>
 
-    <section> <!-- CLOSEST OBJECTS SECTION -->
-       <h2>Near Earth Objects on Selected Earth Day</h2>
+      <section> <!-- CLOSEST OBJECTS SECTION -->
+        <h2>Near Earth Objects on Selected Earth Day</h2>
         <div id="content"></div>
-     </section>
+      </section>
 
-    <section> <!-- APOD SECTION -->
-       <div id="apodImage"></div>
+      <section> <!-- APOD SECTION -->
+        <div id="apodImage"></div>
+      </section>
     </section>
   </section>
-</section>
 
 </body>
 <footer>
 </footer>
+<div class="absolute bottom-3 left-3 ...">
+  <h3 class="my-custom-class2 border-b-2 border-fuchsia-600 w-3/6  ...">Contact Us</h3>
+  <div id="suscribe">
+    <p class="my-custom-class3 mb-6 ">Get the latest news about space and Mars:</p>
+    <input type="email" placeholder="Enter your email">
+    <button id="btnSendEmail" class="ml-16  bg-gradient-to-r from-gray-400 to-gray-50 
+                                 hover:from-gray-200 hover:to-gray-400 px-8 
+                                 py-1 rounded-t-lg text-lg text-gray-700 ...">Send</button>
+  </div>
+</div>
+
 </html>
 
+<script src="script.js"></script>
