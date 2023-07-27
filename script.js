@@ -154,6 +154,7 @@ function displayRoverData(data) {
     var imgElement = document.createElement("img");
     var div = document.createElement("div");
     div.setAttribute('class', 'swiper-slide');
+    imgElement.setAttribute('class', 'object-contain h-48 w-96');
     imgElement.src = imgSrc;
     div.appendChild(imgElement);
     roverDataDiv.appendChild(div);
