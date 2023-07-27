@@ -113,6 +113,15 @@ function getRandomEarthDays(rover) {
 // and it calls the displayRover(data) fuction to display the fetched images
 
 function fetchRoverData() {
+
+  //show rover images section
+  var roverSection = document.getElementById("roverSection");
+  roverSection.style.display = "block";
+
+  //hide near objects section
+  var nearObjectSection = document.getElementById("nearObjectSection");
+  nearObjectSection.style.display = "none";
+
   var rover = document.getElementById("rover").value;
   var selectedEarthDay = document.getElementById("earthDay").value;
   var url = `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?earth_date=${selectedEarthDay}&api_key=GGboVELwdTMQUM6rJcA5xx7EbK6SWxUTjOSiCvjX`;
@@ -154,6 +163,15 @@ function displayRoverData(data) {
 
 //this is the function for the api of the near earth objects 
 async function fetchNeoData() {
+
+  //show near objects section
+  var nearObjectSection = document.getElementById("nearObjectSection");
+  nearObjectSection.style.display = "block";
+
+   //hide rover images section
+   var roverSection = document.getElementById("roverSection");
+   roverSection.style.display = "none";
+
   let selectedEarthDay = document.getElementById("eartDayObjects").value;
   let API_KEY = "GGboVELwdTMQUM6rJcA5xx7EbK6SWxUTjOSiCvjX";
   let url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${selectedEarthDay}&end_date=${selectedEarthDay}&api_key=${API_KEY}`;
