@@ -202,6 +202,37 @@ function useApiData(data) {
   document.querySelector("#content").innerHTML = htmlContent;
 }
 
+// email localstorage functions
+
+function storeEmail() {
+  // Get the email input element
+  const emailInput = document.getElementById('emailInput');
+
+  // Get the email input value
+  const emailValue = emailInput.value;
+
+  // Get the emails array from local storage, or initialize it if it doesn't exist
+  let emailsArray = JSON.parse(localStorage.getItem('emails')) || [];
+
+  // Check if the email already exists in the emails array
+  if (emailsArray.includes(emailValue)) {
+      alert('Email already exists in the local storage database.');
+      return; // Exit the function if the email already exists
+  }
+
+  // Add the new email to the emails array
+  emailsArray.push(emailValue);
+
+  // Save the updated emails array to local storage
+  localStorage.setItem('emails', JSON.stringify(emailsArray));
+
+  // Display a confirmation message
+  alert('Email saved to local storage database: ' + emailValue);
+}
+
+// Listen for button click event to store email in local storage
+document.getElementById('btnSendEmail').addEventListener('click', storeEmail);
+
 //we add an event listener ensuring that that all the jave is executed once we have loaded all the dom
 // this button makes the world work, because it starts the entire code
 
@@ -215,28 +246,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// email localstorage
-
-// Get the email input element and send button
-const emailInput = document.getElementById('emailInput');
-const btnSendEmail = document.getElementById('btnSendEmail');
-
-// Check if email exists in local storage and display it if it does
-if (localStorage.getItem('email')) {
-  emailInput.value = localStorage.getItem('email');
-}
-
-// Listen for button click event
-btnSendEmail.addEventListener('click', function () {
-  // Get the email input value
-  const emailValue = emailInput.value;
-
-  // Save the email to local storage
-  localStorage.setItem('email', emailValue);
-
-  // Display a confirmation message
-  alert('Email saved to local storage: ' + emailValue);
-});
 
 function init() {
   fetchAPO()
