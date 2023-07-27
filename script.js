@@ -143,8 +143,11 @@ function displayRoverData(data) {
   for (var i = 0; i < photosToDisplay.length; i++) {
     var imgSrc = photosToDisplay[i].img_src;
     var imgElement = document.createElement("img");
+    var div = document.createElement("div");
+    div.setAttribute('class', 'swiper-slide');
     imgElement.src = imgSrc;
-    roverDataDiv.appendChild(imgElement);
+    div.appendChild(imgElement);
+    roverDataDiv.appendChild(div);
   }
 }
 
@@ -208,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //console.log("button pressed");
     fetchRandomEarthDays();
     fetchRoverData();
-    fetchNeoData();
+    //fetchNeoData();
   });
 });
 
@@ -251,5 +254,15 @@ function selectTab(tabIndex) {
   //Show the Selected Tab
   document.getElementById(tabIndex).style.display = "block";
 }
+
+var swiper = new Swiper('.carousel',{
+  navigation:{
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  pagination:{
+    el: '.swiper-pagination',
+  },
+})
 
 init();

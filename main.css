@@ -47,14 +47,70 @@
   text-align: center;
   background-color: f1f1f1s;
 }
+
 /**** TAB SECTION ****/
 
+/**** GALLERY SECTION ****/
+.swiper {
+  width: 750px;
+}
+
+.swiper-slide {
+  background-color: #000;
+}
+
+.swiper-slide img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper button {
+  color: darkgoldenrod;
+  background: transparent;
+  width: 50px;
+  height: 50px;
+  border: none;
+  outline: none;
+  transition: opacity 0.25s;
+}
+
+.swiper button:hover {
+  opacity: 0.8;
+}
+
+.swiper button::before,
+.swiper button::after {
+  font-size: 30px;
+}
+
+.swiper-button-next {
+  right: 30px;
+}
+
+.swiper-button-prev {
+  right: 30px;
+}
+
+.swiper-pagination-bullet {
+  background-color: darkgoldenrod;
+}
+
+/**** GALLERY SECTION ****/
+
 
 /**** NEAR OBJECTS SECTION ****/
-#content{
+#content {
   color: white;
 }
+
 /**** NEAR OBJECTS SECTION ****/
+
+/**** INPUT ANIMATION SECTION ****/
+
+/**** INPUT ANIMATION SECTION ****/
+
 
 .my-custom-class {
   font-weight: 500;
